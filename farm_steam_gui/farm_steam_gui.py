@@ -6,11 +6,13 @@ import pygetwindow as gw
 import random
 import tkinter as tk
 from tkinter import ttk, messagebox, filedialog, scrolledtext
+from pymem.ptypes import RemotePointer
 from ttkthemes import ThemedStyle
 import json
 import threading
 from pymem.process import *
 import pymem
+
 
 def click_center_of_window(window_title):
     windows = gw.getWindowsWithTitle(window_title)
@@ -32,22 +34,57 @@ def click_center_of_window(window_title):
         log(f"Window: '{window_title}' not found.")
 
 
-def patch_banana(window_title):
-    def GetPtrAddr(base, offsets):
-        addr = pm.read_longlong(base)
-        for offset in offsets:
-            if offset != offsets[-1]:
-                addr = pm.read_longlong(addr + offset)
-        return addr + offsets[-1]
+def GetPtrAddr(base, offsets, pm):
+    remote_pointer = RemotePointer(pm.process_handle, base)
+    for offset in offsets:
+        if offset != offsets[-1]:
+            remote_pointer = RemotePointer(pm.process_handle, remote_pointer.value + offset)
+        else:
+            return remote_pointer.value + offset
 
+
+def patch_banana(window_title):
     score = random.randint(1, 9999999)
 
     pm = pymem.Pymem("Banana.exe")
     gameModule = module_from_name(pm.process_handle, "GameAssembly.dll").lpBaseOfDll
 
-    pm.write_int(GetPtrAddr(gameModule + 0x00EA7648, [0x4A8, 0x78, 0x48, 0xB8, 0x88, 0x60, 0x28]), score)
+    pm.write_int(GetPtrAddr(gameModule + 0x00EA7648, [0x4A8, 0x78, 0x48, 0xB8, 0x88, 0x60, 0x28], pm), score)
 
-    log(f"Window: '{window_title}' patched clicks to: {score}.")
+    log(f"Game: '{window_title}' patched clicks to: {score}.")
+
+
+def patch_banana_and_cucumber(window_title):
+    score = random.randint(1, 9999999)
+
+    pm = pymem.Pymem("Banana and Cucumber.exe")
+    gameModule = module_from_name(pm.process_handle, "GameAssembly.dll").lpBaseOfDll
+
+    pm.write_int(GetPtrAddr(gameModule + 0x0139E40C, [0x688, 0x24, 0x54], pm), score)
+    log(f"Game: '{window_title}' patched clicks to: {score}.")
+
+
+def patch_cats(window_title):
+    pm = pymem.Pymem("Cats.exe")
+    gameModule = module_from_name(pm.process_handle, "GameAssembly.dll").lpBaseOfDll
+
+    original_score = GetPtrAddr(gameModule + 0x01395DE8, [0xBC8], pm)
+    original_score = pm.read_int(original_score)
+
+    score = original_score + random.randint(1, 9999999)
+
+    pm.write_int(GetPtrAddr(gameModule + 0x01395DE8, [0xBC8], pm), score)
+    log(f"Game: '{window_title}'Original score was: {original_score} , patched score clicks to: {score}.")
+
+
+def patch_egg(window_title):
+    pm = pymem.Pymem("Egg.exe")
+    gameModule = module_from_name(pm.process_handle, "GameAssembly.dll").lpBaseOfDll
+
+    score = random.randint(1, 9999999)
+
+    pm.write_int(GetPtrAddr(gameModule + 0x00D57188, [0xD40], pm), score)
+    log(f"Game: '{window_title}' patched clicks to: {score}.")
 
 def close_process(process_name):
     for proc in psutil.process_iter(['pid', 'name']):
@@ -60,8 +97,15 @@ def run_process(game_id, window_title, process_name, delay_click, delay_close):
     time.sleep(delay_click)
     if window_title == "Banana":
         patch_banana(window_title)
+    if window_title == "Cats":
+        patch_cats(window_title)
+    if window_title == "Banana and Cucumber":
+        patch_banana_and_cucumber(window_title)
+    if window_title == "Egg":
+        patch_egg(window_title)
 
     click_center_of_window(window_title)
+    log(f"Game: '{window_title}' will close in: {delay_close}...sec")
     time.sleep(delay_close)
     close_process(process_name)
 
@@ -72,10 +116,12 @@ def start_farming():
     pint = 0
     while farming:
         log(f'Start loop: {pint}...')
+
         pint += 1
         for process in processes:
             if not farming:
                 break
+            log(f"Opening game: '{process["title"]}'...")
             run_process(process["game_id"], process["title"], process["name"], process["start_delay"],
                         process["close_delay"])
 
@@ -88,9 +134,9 @@ def start_farming():
 
 
 def stop_farming():
-    global farming
-    farming = False
-    log("Farming stopped.")
+    log("Farming stopped. Program will close in 5 seconds...")
+    app.after(5000, app.destroy)
+
 
 
 def add_game():
@@ -183,6 +229,9 @@ def log(message):
     log_text.config(state=tk.DISABLED)
     log_text.see(tk.END)
 
+def on_key_press(event):
+    if event.keysym == "F2":
+        exit()
 
 processes = [
     {"game_id": "2923300", "title": "Banana", "name": "Banana.exe", "start_delay": 10, "close_delay": 60},
@@ -202,6 +251,8 @@ app.title("[SCGF] Steam Clicker Games Farmer")
 style = ThemedStyle(app)
 style.set_theme("breeze")
 app.configure(background=style.lookup('TFrame', 'background'))
+
+app.bind("<KeyPress>", on_key_press)
 
 title_label = ttk.Label(app, text="Games for farm:", font=("Helvetica", 14))
 title_label.pack(pady=(10, 0))

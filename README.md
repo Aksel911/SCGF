@@ -5,12 +5,9 @@
 
 ![SCGF](/git-pics/main.png)
 
-The program automatically launches Steam games. It finds the center of the program window and makes a random number of clicks (from 10 to 1000), then closes the game and opens the next one. The sleep time before repeating the cycle is from 5 to 15 seconds.
-
-Also patching 'Banana' clicks.
+The program automatically launches Steam games. Finds the center of the program window and patches clicks in all 4 pre-installed games (Banana, Cucumber, Cats, Egg) from 1 to 9999999, then makes a random number of clicks (from 10 to 1000), then closes the game and opens the next one. Sleep time before repeating the cycle is from 5 to 15 seconds.
 
 The repository contains the source code in the following forms:
-
  - [CMD](/farm_cmd)
  - - Execution via `.exe` variant ([farm.py](/farm_cmd/farm.py))
  - - Execution via `start steam://rungameid/` variant ([farm_steam.py](/farm_cmd/farm_steam.py))
@@ -60,9 +57,7 @@ To load the list of games, click **Load Games** button and select the **.json** 
 
 ![SCGF](/git-pics/main.png)
 
-Программа автоматически запускает Steam игры. Находит центр окна программы и делает рандомное количество кликов (от 10 до 1000), далее закрывает игру и открывает следующую. Время сна перед повторением цикла от 5 до 15 секунд.
-
-Так-же патчит клики в игре 'Banana'.
+Программа автоматически запускает Steam игры. Находит центр окна программы и патчит клики во всех 4-х предустановленных играх (Banana, Cucumber, Cats, Egg) от 1 до 9999999, далее делает рандомное количество кликов (от 10 до 1000), далее закрывает игру и открывает следующую. Время сна перед повторением цикла от 5 до 15 секунд.
 
 В репозитории есть исходный код в виде:
  - [CMD](/farm_cmd)
