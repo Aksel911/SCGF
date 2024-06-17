@@ -8,7 +8,7 @@ import tkinter as tk
 from tkinter import messagebox, filedialog, scrolledtext
 import json
 import threading
-import ttkthemes
+
 
 
 def click_center_of_window(window_title):
