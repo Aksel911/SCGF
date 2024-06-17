@@ -9,25 +9,45 @@ from tkinter import ttk, messagebox, filedialog, scrolledtext
 from ttkthemes import ThemedStyle
 import json
 import threading
-
+from pymem.process import *
+import pymem
 
 def click_center_of_window(window_title):
-    try:
-        windows = gw.getWindowsWithTitle(window_title)
-        if windows:
-            window = windows[0]
-            center_x = window.left + window.width // 2
-            center_y = window.top + window.width // 2
-            num_clicks = random.randint(10, 1001)
-            log(f"Making {num_clicks} clicks for: {window_title}")
-            for _ in range(num_clicks):
-                pyautogui.click(center_x, center_y)
-                time.sleep(0.1)
-        else:
-            log(f"Window with title containing '{window_title}' not found.")
-    except Exception as e:
-        log(f"Error clicking window: {e}")
+    windows = gw.getWindowsWithTitle(window_title)
+    if windows:
+        window = windows[0]
+        center_x = window.left + window.width // 2
+        center_y = window.top + window.height // 2
+        num_clicks = random.randint(1, 1001)
+        log(f"Making {num_clicks} clicks for: {window_title}")
+        for _ in range(num_clicks):
+            offset_x = random.randint(-5, 5)
+            offset_y = random.randint(-5, 5)
 
+            click_x = center_x + offset_x
+            click_y = center_y + offset_y
+            pyautogui.click(click_x, click_y)
+            time.sleep(0.1)
+    else:
+        log(f"Window: '{window_title}' not found.")
+
+
+def patch_banana(window_title):
+    def GetPtrAddr(base, offsets):
+        addr = pm.read_longlong(base)
+        for offset in offsets:
+            if offset != offsets[-1]:
+                addr = pm.read_longlong(addr + offset)
+        return addr + offsets[-1]
+
+    score = random.randint(1, 9999999)
+
+    pm = pymem.Pymem("Banana.exe")
+    gameModule = module_from_name(pm.process_handle, "GameAssembly.dll").lpBaseOfDll
+
+    pm.write_int(GetPtrAddr(gameModule + 0x00EA7648, [0x4A8, 0x78, 0x48, 0xB8, 0x88, 0x60, 0x28]), score)
+
+    log(f"Window: '{window_title}' patched clicks to: {score}.")
 
 def close_process(process_name):
     for proc in psutil.process_iter(['pid', 'name']):
@@ -38,6 +58,9 @@ def close_process(process_name):
 def run_process(game_id, window_title, process_name, delay_click, delay_close):
     sp.Popen(f'start steam://rungameid/{game_id}', shell=True)
     time.sleep(delay_click)
+    if window_title == "Banana":
+        patch_banana(window_title)
+
     click_center_of_window(window_title)
     time.sleep(delay_close)
     close_process(process_name)

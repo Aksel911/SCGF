@@ -7,6 +7,8 @@
 
 The program automatically launches Steam games. It finds the center of the program window and makes a random number of clicks (from 10 to 1000), then closes the game and opens the next one. The sleep time before repeating the cycle is from 5 to 15 seconds.
 
+Also patching 'Banana' clicks.
+
 The repository contains the source code in the following forms:
 
  - [CMD](/farm_cmd)
@@ -59,6 +61,8 @@ To load the list of games, click **Load Games** button and select the **.json** 
 ![SCGF](/git-pics/main.png)
 
 Программа автоматически запускает Steam игры. Находит центр окна программы и делает рандомное количество кликов (от 10 до 1000), далее закрывает игру и открывает следующую. Время сна перед повторением цикла от 5 до 15 секунд.
+
+Так-же патчит клики в игре 'Banana'.
 
 В репозитории есть исходный код в виде:
  - [CMD](/farm_cmd)
