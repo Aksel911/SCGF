@@ -59,8 +59,8 @@ def patch_banana_and_cucumber(window_title):
 
     pm = pymem.Pymem("Banana and Cucumber.exe")
     gameModule = module_from_name(pm.process_handle, "GameAssembly.dll").lpBaseOfDll
-
-    pm.write_int(GetPtrAddr(gameModule + 0x0139E40C, [0x688, 0x24, 0x54], pm), score)
+    pm.write_int(GetPtrAddr(gameModule + 0x0139E48C, [0x688, 0x24, 0x54], pm), score)
+    #pm.write_int(GetPtrAddr(gameModule + 0x0139E40C, [0x688, 0x24, 0x54], pm), score) # old
     log(f"Game: '{window_title}' patched clicks to: {score}.")
 
 
@@ -126,10 +126,13 @@ def start_farming():
                         process["close_delay"])
 
         new_loop_start_time = random.randint(5, 15)
+        last_pint = pint - 1
+
+        log(f'Loop {last_pint} will finish in {new_loop_start_time}...sec')
         for new_loop_start in range(new_loop_start_time):
             time.sleep(new_loop_start)
 
-        last_pint = pint - 1
+
         log(f'Loop {last_pint} finished!')
 
 
@@ -234,6 +237,7 @@ def on_key_press(event):
         exit()
 
 processes = [
+
     {"game_id": "2923300", "title": "Banana", "name": "Banana.exe", "start_delay": 10, "close_delay": 60},
     {"game_id": "2977660", "title": "Cats", "name": "Cats.exe", "start_delay": 10, "close_delay": 90},
     {"game_id": "3015610", "title": "Banana and Cucumber", "name": "Banana and Cucumber.exe", "start_delay": 10, "close_delay": 60},
