@@ -15,13 +15,13 @@ Banana:
 ![SCGF](https://raw.githubusercontent.com/Aksel911/SCGF/main/git-pics/Banana.png)
 
 Cucumber:
-![SCGF](https://raw.githubusercontent.com/Aksel911/SCGF/main/git-pics/Cucumber.png)
+![SCGF](https://raw.githubusercontent.com/Aksel911/SCGF/main/git-pics/cucumber.png)
 
 Cats:
-![SCGF](https://raw.githubusercontent.com/Aksel911/SCGF/main/git-pics/Cats.png)
+![SCGF](https://raw.githubusercontent.com/Aksel911/SCGF/main/git-pics/cats.png)
 
 Egg:
-![SCGF](https://raw.githubusercontent.com/Aksel911/SCGF/main/git-pics/Egg.png)
+![SCGF](https://raw.githubusercontent.com/Aksel911/SCGF/main/git-pics/egg.png)
 
 Flag Clicker:
-![SCGF](https://raw.githubusercontent.com/Aksel911/SCGF/main/git-pics/Flag.png)
+![SCGF](https://raw.githubusercontent.com/Aksel911/SCGF/main/git-pics/flag.png)

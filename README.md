@@ -15,6 +15,7 @@ The repository contains the source code in the following forms:
  - [CMD](https://github.com/Aksel911/SCGF/tree/main/farm_cmd)
  - - Execution via `.exe` variant [[farm.py](https://github.com/Aksel911/SCGF/blob/main/farm_cmd/farm.py)]
  - - Execution via `start steam://rungameid/` variant [[farm_steam.py](https://github.com/Aksel911/SCGF/blob/main/farm_cmd/farm_steam.py)]
+ - - Variant that simply opens 5 games every 3 - 3.5 hours without clicks [[farm_steam.py](https://github.com/Aksel911/SCGF/blob/main/farm_cmd/ez_farm.py)]
  - [GUI](https://github.com/Aksel911/SCGF/tree/main/farm_steam_gui)
  - - Old variant, without using ttkthemes [[farm_steam_gui.py](https://github.com/Aksel911/SCGF/blob/main/farm_steam_gui/farm_steam_gui_without_ttk.py)]
  - - Current variant of the program [[farm_steam_gui_withiut_ttk.py](https://github.com/Aksel911/SCGF/blob/main/farm_steam_gui/farm_steam_gui.py)]
@@ -70,6 +71,7 @@ To load the list of games, click **Load Games** button and select the **.json** 
  - [CMD](https://github.com/Aksel911/SCGF/tree/main/farm_cmd)
  - - Вариант запуска через .exe [[farm.py](https://github.com/Aksel911/SCGF/blob/main/farm_cmd/farm.py)]
  - - Вариант запуска через `start steam://rungameid/` [[farm_steam.py](https://github.com/Aksel911/SCGF/blob/main/farm_cmd/farm_steam.py)]
+ - - Вариант, который просто открывает 5 игр каждые 3 - 3.5 часа без кликов [[farm_steam.py](https://github.com/Aksel911/SCGF/blob/main/farm_cmd/ez_farm.py)]
  - [GUI](https://github.com/Aksel911/SCGF/tree/main/farm_steam_gui)
  - - Старый вариант, без использования ttkthemes [[farm_steam_gui.py](https://github.com/Aksel911/SCGF/blob/main/farm_steam_gui/farm_steam_gui_without_ttk.py)]
  - - Актуальный вариант программы [[farm_steam_gui_withiut_ttk.py](https://github.com/Aksel911/SCGF/blob/main/farm_steam_gui/farm_steam_gui.py)]
