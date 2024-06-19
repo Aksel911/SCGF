@@ -1,6 +1,6 @@
-[EZ_FARM.py](#EZ_FARM.py) | [FARM_STEAM](#FARM_STEAM.py) | [FARM](#FARM.py)
+[EZ_FARM.py](#EZ_FARM) | [FARM_STEAM](#FARM_STEAM) | [FARM](#FARM)
 
-### EZ_FARM.py
+### EZ_FARM
 # [EZ_FARM.py](https://github.com/Aksel911/SCGF/blob/main/farm_cmd/ez_farm.py)
 
 EZ_FARM.py is a Python script designed to automate the process of launching and closing Steam games at regular intervals. This tool can be useful for various purposes such as farming in-game items or boosting game time for achievements. The bot ensures only one game runs at a time and waits a specified period between game launches.
@@ -74,7 +74,7 @@ This project is licensed under the MIT License. See the LICENSE file for details
 
 
 
-### FARM_STEAM.py
+### FARM_STEAM
 # [FARM_STEAM.py](https://github.com/Aksel911/SCGF/blob/main/farm_cmd/farm_steam.py)
 
 
@@ -161,7 +161,7 @@ This project is licensed under the MIT License. See the LICENSE file for details
 
 
 
-### FARM.py
+### FARM
 # [FARM.py](https://github.com/Aksel911/SCGF/blob/main/farm_cmd/farm.py)
 
 
