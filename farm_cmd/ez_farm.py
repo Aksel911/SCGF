@@ -17,6 +17,11 @@ processes = [
     {"game_id": "2996990", "title": "Flaggenspiel", "name": "Flaggenspiel.exe", "start_delay": start_delay, "close_delay": close_delay}
 ]
 
+def seconds_to_minutes(seconds):
+    minutes = seconds // 60
+    remaining_seconds = seconds % 60
+    return f"{minutes} min. {remaining_seconds} seconds"
+
 def is_process_running(process_name):
     for proc in psutil.process_iter(['name']):
         if proc.info['name'] == process_name:
@@ -30,7 +35,7 @@ def run_process(game_id, window_title, process_name, delay_click, delay_close):
         time.sleep(delay_click)
 
         if is_process_running(process_name):
-            logging.info(f"✅ Game {window_title} is running. Waiting for {delay_close} seconds before closing...")
+            logging.info(f"✅ Game {window_title} is running. Waiting for {seconds_to_minutes(delay_close)} before closing...")
             time.sleep(delay_close)
             logging.info(f"✖️ Closing game {window_title}...")
             sp.Popen(f'taskkill /IM "{process_name}" /F', shell=True)
@@ -47,11 +52,12 @@ def start_farming():
             logging.info(f"🎮 Opening game: '{process['title']}'...")
             run_process(process["game_id"], process["title"], process["name"], process["start_delay"], process["close_delay"])
 
-        new_loop_start_time = random.randint(10800, 11000)  # 3h+-
+        #new_loop_start_time = random.randint(10800, 12600)  # 3 - 3.5h
+        new_loop_start_time = random.randint(1200, 1800)    # 20 - 30 min
         last_pint = pint
         pint += 1
         logging.info(f"✅ Loop: {last_pint} finished!")
-        logging.info(f"🕒 Waiting for {new_loop_start_time} seconds before starting the next loop: {pint}...")
+        logging.info(f"🕒 Waiting for {seconds_to_minutes(new_loop_start_time)} before starting the next loop: {pint}...")
         time.sleep(new_loop_start_time)
 
 if __name__ == "__main__":
