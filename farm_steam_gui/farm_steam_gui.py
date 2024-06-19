@@ -59,8 +59,9 @@ def patch_banana_and_cucumber(window_title):
 
     pm = pymem.Pymem("Banana and Cucumber.exe")
     gameModule = module_from_name(pm.process_handle, "GameAssembly.dll").lpBaseOfDll
-    pm.write_int(GetPtrAddr(gameModule + 0x0139E48C, [0x688, 0x24, 0x54], pm), score)
-    #pm.write_int(GetPtrAddr(gameModule + 0x0139E40C, [0x688, 0x24, 0x54], pm), score) # old
+    pm.write_int(GetPtrAddr(gameModule + 0x01332EE0, [0x5C, 0x0, 0x34], pm), score) # v0.0.6
+    #pm.write_int(GetPtrAddr(gameModule + 0x0139E48C, [0x688, 0x24, 0x54], pm), score) # v0.0.5
+    #pm.write_int(GetPtrAddr(gameModule + 0x0139E40C, [0x688, 0x24, 0x54], pm), score) # v0.0.4
     log(f"Game: '{window_title}' patched clicks to: {score}.")
 
 
