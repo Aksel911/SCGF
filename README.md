@@ -1,5 +1,7 @@
 [🇺🇸](#english-version) | [🇷🇺](#russian-version)
 
+![SCGF](https://raw.githubusercontent.com/Aksel911/SCGF/main/git-pics/scgf.png)
+
 ### English version
 # [SCGF] Steam Clicker Games Farmer
 
