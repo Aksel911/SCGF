@@ -79,7 +79,8 @@ def patch_cats(window_title):
     log(f"Game: '{window_title}' Original score was: {original_score} , patched score clicks to: {score}.")
 
 def patch_egg(window_title):
-    patch_game("Egg.exe", "GameAssembly.dll", 0x00D57188, [0xD40], window_title)
+    patch_game("Egg.exe", "GameAssembly.dll", 0x00D582B8, [0xD40], window_title) # 6.18.2024
+    #patch_game("Egg.exe", "GameAssembly.dll", 0x00D57188, [0xD40], window_title) # before 6.18.2024
 
 def patch_flags(window_title):
     patch_game("Flaggenspiel.exe", "UnityPlayer.dll", 0x01D04080, [0xD0, 0x8, 0xD8], window_title)
