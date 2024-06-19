@@ -5,7 +5,9 @@
 
 ![SCGF](/git-pics/main.png)
 
-The program automatically launches Steam games. Finds the center of the program window and patches clicks in all 4 pre-installed games (Banana, Cucumber, Cats, Egg) from 1 to 9999999, then makes a random number of clicks (from 10 to 1000), then closes the game and opens the next one. Sleep time before repeating the cycle is from 5 to 15 seconds.
+The program automatically launches Steam games. Finds the center of the program window and patches clicks in all 5 pre-installed games (Banana, Cucumber, Cats, Egg, Flag Clicker) from 1 to 9999999, then makes a random number of clicks (from 1 to 5), then closes the game and opens the next one. Sleep time before repeating the cycle is from 5 to 15 seconds.
+
+Dont forget to set Flag Clicker game to window mode!
 
 The repository contains the source code in the following forms:
  - [CMD](/farm_cmd)
@@ -21,6 +23,7 @@ The program loads with 4 games already automatically added:
  - [Banana and Cucumber](https://store.steampowered.com/app/3015610/Banana__Cucumber/)
  - [Cats](https://store.steampowered.com/app/2977660/Cats/)
  - [Egg](https://store.steampowered.com/app/2784840/Egg/)
+ - [Flag Clicker](https://store.steampowered.com/app/2996990/Flag_Clicker/)
  
  To start farming, click **Start Farming** button.
  To stop farming, click **Stop Farming** button.
@@ -57,7 +60,9 @@ To load the list of games, click **Load Games** button and select the **.json** 
 
 ![SCGF](/git-pics/main.png)
 
-Программа автоматически запускает Steam игры. Находит центр окна программы и патчит клики во всех 4-х предустановленных играх (Banana, Cucumber, Cats, Egg) от 1 до 9999999, далее делает рандомное количество кликов (от 10 до 1000), далее закрывает игру и открывает следующую. Время сна перед повторением цикла от 5 до 15 секунд.
+Программа автоматически запускает Steam игры. Находит центр окна программы и патчит клики во всех 5 предустановленных играх (Banana, Cucumber, Cats, Egg, Flag Clicker) от 1 до 9999999, далее делает рандомное количество кликов (от 1 до 5), далее закрывает игру и открывает следующую. Время сна перед повторением цикла от 5 до 15 секунд.
+
+Не забудьте запускать игру Flag Clicker в окне!
 
 В репозитории есть исходный код в виде:
  - [CMD](/farm_cmd)
@@ -73,6 +78,7 @@ To load the list of games, click **Load Games** button and select the **.json** 
  - [Banana and Cucumber](https://store.steampowered.com/app/3015610/Banana__Cucumber/)
  - [Cats](https://store.steampowered.com/app/2977660/Cats/)
  - [Egg](https://store.steampowered.com/app/2784840/Egg/)
+ - [Flag Clicker](https://store.steampowered.com/app/2996990/Flag_Clicker/)
  
  Для запуска фарминга нажать на кнопку: **Start Farming**.
  Для остановки фарминга нажать на кнопку: **Stop Farming**.
